@@ -5,7 +5,7 @@ from models import Base
 #Motor SQLite en local
 DATABASE_URL = "sqlite:///.vuelos.db"
 
-engine = create_engine(DATABASE_URL, conect_args={"chek_same_thread": False})
+engine = create_engine(DATABASE_URL, connect_args={"check_same_thread": False})
 
 #Cerrar sesión
 SessionLocal = sessionmaker(bind=engine, autoflush=False, autocommit=False)

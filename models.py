@@ -12,11 +12,11 @@ class EstadoVuelo(enum.Enum):
 class Vuelo(Base):
     __tablename__ = "vuelos"
 
-    codigo = Column(String, primary_key= True, unique= True)
-    estado = Column(Enum,(EstadoVuelo), nullable= False)
-    hora = Column(DateTime, nullable= False)
-    origen = Column(String, nullable= False)
-    destino = Column(String, nullable= False) 
+    codigo = Column(String, primary_key=True, unique=True)
+    estado = Column(Enum(EstadoVuelo), nullable=False)
+    hora = Column(DateTime, nullable=False)
+    origen = Column(String, nullable=False)
+    destino = Column(String, nullable=False) 
 
     def __repr__(self):
         return f"<Vuelo(codigo={self.codigo}, estado={self.estado}, origen={self.origen}, destino={self.destino})>"
