@@ -14,6 +14,11 @@ class VueloSchema(BaseModel):
     origen: str
     destino: str
 
+class VueloOut(VueloSchema):
+    class Config:
+        orm_mode = True
+
+
 
 
 
