@@ -17,7 +17,7 @@ class ListaVuelos:
     def longitud(self):
         return self.size
     
-    def insertar_al_frente(self, vuelo: Vuelo):
+    def insertar_al_frente(self, vuelo: Vuelo, guardar_db: True, incrementar_size: True):
         nuevo = Nodo(vuelo)
         nuevo.siguiente = self.cabeza
         if self.cabeza is not None:
@@ -25,9 +25,11 @@ class ListaVuelos:
         else:
             self.cola = nuevo #primer nodo si la lista esta vacia    
         self.cabeza = nuevo
-        self.size += 1
-        self.session.add(vuelo)
-        self.session.commit()
+        if incrementar_size:
+            self.size += 1
+        if guardar_db:
+            self.session.add(vuelo)
+            self.session.commit()
     
     def insertar_al_final(self, vuelo: Vuelo, guardar_db=True):
         nuevo = Nodo(vuelo)
@@ -53,9 +55,9 @@ class ListaVuelos:
     
     def insertar_en_posicion(self, vuelo: Vuelo, posicion: int, guardar_db=True, incrementar_size=True):
         if posicion <= 0:
-            return self.insertar_al_frente(vuelo, guardar_db)
+            return self.insertar_al_frente(vuelo, guardar_db, incrementar_size)
         if posicion >= self.size:
-            return self.insertar_al_final(vuelo, guardar_db)
+            return self.insertar_al_final(vuelo, guardar_db, incrementar_size)
         
         nuevo = Nodo(vuelo)
 
